@@ -5,7 +5,11 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
+	MainState main_state = LoadGraphState;
+	GraphLoader graph_loader;
+	graph_loader.Load();
 	// 画面モードの設定
+	ChangeWindowMode(TRUE);
 	SetGraphMode(640, 480, 16);
 
 	// ＤＸライブラリ初期化処理
@@ -14,7 +18,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	// 移動ルーチン
 	while (true)
 	{
 		// 画面を初期化(真っ黒にする)
@@ -24,7 +27,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			
 		}
 		else {
+			switch(main_state) {
+				case LoadGraphState:
+					main_state = TitleDispState;
+					break;
 
+				case TitleDispState:
+
+					break;
+
+				case GameState:
+
+					break;
+			}
 		}
 		
 
