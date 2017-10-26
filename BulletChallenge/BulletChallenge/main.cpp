@@ -5,9 +5,6 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	MainState main_state = LoadGraphState;
-	GraphLoader graph_loader;
-	graph_loader.Load();
 	// 画面モードの設定
 	ChangeWindowMode(TRUE);
 	SetGraphMode(640, 480, 16);
@@ -18,13 +15,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
+	MainState main_state = LoadGraphState;
+	GraphLoader graph_loader;
+	graph_loader.Load();
+
 	while (true)
 	{
+		graph_loader.LoadError();
 		// 画面を初期化(真っ黒にする)
 		ClearDrawScreen();
-
 		if (GetASyncLoadNum() != 0) {
-			
+			DrawGraph(0, 0, graph_loader.LoadGr(), TRUE);
 		}
 		else {
 			switch(main_state) {
@@ -33,7 +34,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					break;
 
 				case TitleDispState:
-
+					graph_loader.TitleDraw();
+					
 					break;
 
 				case GameState:
