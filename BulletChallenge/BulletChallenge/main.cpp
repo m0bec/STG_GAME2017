@@ -26,6 +26,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	GameBackDrawer game_back_drawer;
 	Player player;
+	EnemyController enemy_controller;
 
 	while (true)
 	{

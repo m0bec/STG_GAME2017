@@ -8,14 +8,3 @@ struct Bullet {
 	int move_var;
 	double move_angle;
 };
-
-struct Enemy {
-	Enemy() {
-
-	}
-	int hight, width;
-	int x, y;
-	int gr;
-	int shot_var;
-	int move_var;
-};
