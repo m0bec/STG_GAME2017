@@ -7,7 +7,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
 	// 画面モードの設定
 	ChangeWindowMode(TRUE);
-	SetGraphMode(640, 480, 16);
+	SetGraphMode(800, 600, 16);
 
 	// ＤＸライブラリ初期化処理
 	if (DxLib_Init() == -1) return -1;
@@ -15,6 +15,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
+	ScoreManager &score_manager = ScoreManager::GetInstance();
+	score_manager.LoadScore();
 	bool exit_flag = false;
 	int main_state = LoadGraphState;
 	GraphLoader graph_loader;
