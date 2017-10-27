@@ -5,7 +5,7 @@
 class TitleDrawer {
 private:
 	enum TitleState {
-		Start, Manual, Exit
+		Start, Manual, Exit, DispManual
 	};
 	int title_state;
 	int push_key_timer;
@@ -18,6 +18,7 @@ public:
 		push_key_timer = 0;
 	}
 
-	void DrawTitle(int const& title_back_gr_, int const& start_gr_, int const& exit_gr_, int const& manual_gr_);
+	void DrawTitle(int const& title_back_gr_, int const& start_gr_, int const& exit_gr_, int const& manual_gr_, int const& manual_disp_);
 	void TitleSystem();
+	void Select(bool &f_, int &state_);
 };

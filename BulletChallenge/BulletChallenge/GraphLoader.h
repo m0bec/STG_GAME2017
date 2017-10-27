@@ -26,5 +26,5 @@ public:
 	int start_gr;
 	int manual_gr;
 	int title_back_gr;
-
+	int manual_disp;
 };

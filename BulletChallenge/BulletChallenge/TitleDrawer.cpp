@@ -1,6 +1,7 @@
 #include "TitleDrawer.h"
+#include "main_state.h"
 
-void TitleDrawer::DrawTitle(int const& title_back_gr_, int const& start_gr_, int const& exit_gr_, int const& manual_gr_) {
+void TitleDrawer::DrawTitle(int const& title_back_gr_, int const& start_gr_, int const& exit_gr_, int const& manual_gr_, int const& manual_disp_) {
 	DrawGraph(0, 0, title_back_gr_, TRUE);
 	switch (title_state) {
 	case Start:
@@ -25,6 +26,10 @@ void TitleDrawer::DrawTitle(int const& title_back_gr_, int const& start_gr_, int
 		DrawGraph(200, 200, start_gr_, TRUE);
 		DrawGraph(200, 250, manual_gr_, TRUE);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		break;
+
+	case DispManual:
+		DrawGraph(0, 0, manual_disp_, TRUE);
 		break;
 	}
 }
@@ -53,5 +58,30 @@ void TitleDrawer::TitleSystem() {
 			push_key_flag = false;
 		}
 		if (CheckHitKeyAll() == 0)	push_key_flag = false;
+	}
+}
+
+void TitleDrawer::Select(bool &f_, int &state_) {
+	if (CheckHitKey(KEY_INPUT_RETURN) && !push_key_flag) {
+		switch (title_state) {
+		case Start:
+			state_ = GameState;
+			break;
+
+		case Manual:
+			title_state = DispManual;
+			push_key_flag = true;
+			break;
+			
+		case Exit:
+			f_ = true;
+			break;
+
+		case DispManual:
+			if (!push_key_flag) {
+				title_state = Manual;
+				push_key_flag = true;
+			}
+		}
 	}
 }
