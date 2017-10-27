@@ -4,3 +4,5 @@
 #include "TitleDrawer.h"
 #include "ScoreManager.h"
 #include "GameBackDrawer.h"
+#include "ObjectStructure.h"
+#include "Player.h"

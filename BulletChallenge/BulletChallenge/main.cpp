@@ -25,6 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	graph_loader.Load();
 
 	GameBackDrawer game_back_drawer;
+	Player player;
 
 	while (true)
 	{
@@ -38,6 +39,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			switch(main_state) {
 				case LoadGraphState:
 					main_state = TitleDispState;
+					player.SetPlayerData(graph_loader.ziki_gr);
 					break;
 
 				case TitleDispState:
@@ -48,6 +50,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 				case GameState:
 					game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
+					player.Exe();
 					break;
 			}
 		}
