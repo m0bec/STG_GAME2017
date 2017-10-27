@@ -17,6 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	MainState main_state = LoadGraphState;
 	GraphLoader graph_loader;
+	TitleDrawer title_drawer;
 	graph_loader.Load();
 
 	while (true)
@@ -25,7 +26,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		// âÊñ Çèâä˙âª(ê^Ç¡çïÇ…Ç∑ÇÈ)
 		ClearDrawScreen();
 		if (GetASyncLoadNum() != 0) {
-			DrawGraph(0, 0, graph_loader.LoadGr(), TRUE);
+			DrawGraph(0, 0, graph_loader.load_gr, TRUE);
 		}
 		else {
 			switch(main_state) {
@@ -34,8 +35,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					break;
 
 				case TitleDispState:
-					graph_loader.TitleDraw();
-					
+					title_drawer.DrawTitle(graph_loader.title_back_gr, graph_loader.start_gr, graph_loader.exit_gr, graph_loader.manual_gr);
+					title_drawer.TitleSystem();
 					break;
 
 				case GameState:

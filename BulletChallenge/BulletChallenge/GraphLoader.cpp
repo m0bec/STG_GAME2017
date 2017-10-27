@@ -23,6 +23,7 @@ void GraphLoader::Load() {
 
 void GraphLoader::TitleDraw() {
 	DrawGraph(0, 0, title_back_gr, TRUE);
+	
 }
 
 void GraphLoader::LoadError(){
