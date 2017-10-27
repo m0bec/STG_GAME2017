@@ -19,6 +19,8 @@ void GraphLoader::Load() {
 	LoadCheck(manual_gr, "Graph/manual.png");
 	LoadCheck(title_back_gr, "Graph/title.png");
 	LoadCheck(manual_disp, "Graph/ManualDisp.png");
+
+	LoadCheck(game_back_gr, "Graph/GameBack.png");
 }
 
 void GraphLoader::TitleDraw() {

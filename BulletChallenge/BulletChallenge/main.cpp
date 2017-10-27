@@ -17,11 +17,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	ScoreManager &score_manager = ScoreManager::GetInstance();
 	score_manager.LoadScore();
+
 	bool exit_flag = false;
 	int main_state = LoadGraphState;
 	GraphLoader graph_loader;
 	TitleDrawer title_drawer;
 	graph_loader.Load();
+
+	GameBackDrawer game_back_drawer;
 
 	while (true)
 	{
@@ -44,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					break;
 
 				case GameState:
-
+					game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
 					break;
 			}
 		}

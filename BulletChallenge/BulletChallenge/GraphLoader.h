@@ -27,4 +27,7 @@ public:
 	int manual_gr;
 	int title_back_gr;
 	int manual_disp;
+
+	//Game
+	int game_back_gr;
 };
