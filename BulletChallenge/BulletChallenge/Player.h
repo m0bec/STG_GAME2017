@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include "ObjectStructure.h"
+
 struct Ziki {
 	Ziki() {
 		avoid_num = 2;
@@ -20,6 +21,7 @@ struct Ziki {
 class Player {
 private:
 	const int MOVE_SPEED = 4;
+	const double ROTA_SPEED = 3.141592 / 90;
 	Ziki ziki;
 public:
 	Player(){

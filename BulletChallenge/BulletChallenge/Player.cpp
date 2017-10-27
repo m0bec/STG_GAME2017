@@ -25,4 +25,10 @@ void Player::Move() {
 	if (CheckHitKey(KEY_INPUT_DOWN)) {
 		ziki.y += MOVE_SPEED;
 	}
+	if (CheckHitKey(KEY_INPUT_A)) {
+		ziki.rota += ROTA_SPEED;
+	}
+	if (CheckHitKey(KEY_INPUT_D)) {
+		ziki.rota -= ROTA_SPEED;
+	}
 }
