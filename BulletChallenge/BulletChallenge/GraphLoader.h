@@ -18,8 +18,7 @@ public:
 
 	//Ziki
 	int ziki_gr;
-	int ziki_rgr;
-	int ziki_lgr;
+	int player_bullet_gr;
 
 	//Title
 	int exit_gr;

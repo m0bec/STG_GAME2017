@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include "ObjectStructure.h"
+const double PI = 3.141592;
 
 struct Ziki {
 	Ziki() {
@@ -20,17 +21,30 @@ struct Ziki {
 
 class Player {
 private:
-	const int MOVE_SPEED = 4;
-	const double ROTA_SPEED = 3.141592 / 90;
+	const int MOVE_SPEED = 5;
+	const double ROTA_SPEED = PI / 90;
 	Ziki ziki;
+	const double BULLET_RADI = PI / 10;
+	const int BULLET_SPEED = 7;
+	const int NO_BULLET = -1;
+	Bullet sample_bullet;
+	Bullet bullet[100];
+	int bullet_count;
+
 public:
 	Player(){
 		ziki.avoid_num = 2;
 		ziki.hp = 2;
 		ziki.rota = 0.0;
+		sample_bullet.move_var = 0;
+		sample_bullet.move_speed = BULLET_SPEED;
+		sample_bullet.move_angle = 0.0;
+		for (Bullet &t_ : bullet)	t_.move_var = NO_BULLET;
+		bullet_count = 0;
 	}
 
 	void Exe();
 	void Move();
-	void SetPlayerData(int const& gr_);
+	void SetPlayerData(int const& gr_, int const& player_bullet_);
+	void BulletMove();
 };
