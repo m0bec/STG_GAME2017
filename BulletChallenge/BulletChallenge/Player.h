@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include "ObjectStructure.h"
+#include "GameBaseRule.h"
 const double PI = 3.141592;
 
 struct Ziki {
@@ -25,7 +26,8 @@ private:
 	const double ROTA_SPEED = PI / 90;
 	Ziki ziki;
 	const double BULLET_RADI = PI / 10;
-	const int BULLET_SPEED = 7;
+	const int BULLET_COUNTER_MAX = 3;
+	const int BULLET_SPEED = 15;
 	const int NO_BULLET = -1;
 	Bullet sample_bullet;
 	Bullet bullet[100];

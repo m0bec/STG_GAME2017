@@ -44,7 +44,7 @@ void Player::BulletMove() {
 
 	for (Bullet &t_ : bullet) {
 		if (t_.move_var == NO_BULLET) {
-			if (bullet_count > 5 && count < 2) {
+			if (bullet_count > BULLET_COUNTER_MAX && count < 2) {
 				t_ = sample_bullet;
 				t_.x = ziki.x;
 				t_.y = ziki.y;
@@ -53,11 +53,13 @@ void Player::BulletMove() {
 			}
 		}
 		else if (t_.move_var == sample_bullet.move_var) {
-			t_.x += static_cast<int>(7 * sin(t_.move_angle));
-			t_.y -= static_cast<int>(t_.move_speed);
+			t_.x += static_cast<int>(7 * sin(t_.move_angle) * cos(ziki.rota) + t_.move_speed * sin(ziki.rota));
+			t_.y -= static_cast<int>(t_.move_speed * cos(ziki.rota) + 7 * sin(t_.move_angle) * sin(-ziki.rota));
 			t_.move_angle += BULLET_RADI;
 			if (t_.move_angle > 2 * PI)	t_.move_angle -= 2 * PI;
 			DrawGraph(t_.x, t_.y, t_.gr, TRUE);
+			if (t_.y + t_.height < DISP_AREA_Y || t_.x - t_.width > DISP_AREA_X ||
+				t_.y - t_.height > 600 || t_.x + t_.width < 0)	t_.move_var = NO_BULLET;
 		}
 	}
 	if(bullet_count > 5)	bullet_count = 0;
