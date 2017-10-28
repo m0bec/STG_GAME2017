@@ -9,6 +9,7 @@ void EnemyController::SetEnemy() {
 			base_enemy.Sethp(ENEMY_HP);
 			base_enemy.SetPos(randx(rd), randy(rd));
 			base_enemy.SetMoveVar(1);
+			base_enemy.add_score = false;
 			t_ = base_enemy;
 			++num_;
 		}
@@ -20,6 +21,7 @@ void EnemyController::SetEnemy() {
 		base_enemy.Sethp(ENEMY_HP);
 		base_enemy.SetPos(randx(rd), randy(rd));
 		base_enemy.SetMoveVar(1);
+		base_enemy.add_score = false;
 		enemy_array.push_back(base_enemy);
 	}
 	++enemy_create_num;
@@ -29,7 +31,6 @@ void EnemyController::EnemyExe() {
 	for (Enemy &enemy_ : enemy_array) {
 		EnemyMove(enemy_);
 	}
-	
 }
 
 void EnemyController::EnemyMove(Enemy& enemy_) {
@@ -45,6 +46,7 @@ void EnemyController::EnemyHit(Enemy& enemy_, Bullet& bullet_) {
 			enemy_.Damage();
 			bullet_.x = -1000;
 			bullet_.y = -1000;
+			game_system.ScoreAdd(HIT_SCORE);
 		}
 	}
 }
@@ -58,5 +60,12 @@ void EnemyController::PlayerHit(Ziki& ziki_) {
 					--ziki_.hp;
 			}
 		}
+	}
+}
+
+void EnemyController::AddKillScore(Enemy& enemy_) {
+	if (!enemy_.add_score && enemy_.Gethp() <= 0) {
+		game_system.ScoreAdd(KILL_ENEMY_SCORE);
+		enemy_.add_score = true;
 	}
 }

@@ -22,8 +22,8 @@ void Player::Move() {
 	if (CheckHitKey(KEY_INPUT_LEFT))	ziki.x -= MOVE_SPEED;
 	if (CheckHitKey(KEY_INPUT_UP)) 	ziki.y -= MOVE_SPEED;
 	if (CheckHitKey(KEY_INPUT_DOWN))	ziki.y += MOVE_SPEED;
-	if (CheckHitKey(KEY_INPUT_A))	ziki.rota += ROTA_SPEED;
-	if (CheckHitKey(KEY_INPUT_D))	ziki.rota -= ROTA_SPEED;
+	if (CheckHitKey(KEY_INPUT_D))	ziki.rota += ROTA_SPEED;
+	if (CheckHitKey(KEY_INPUT_A))	ziki.rota -= ROTA_SPEED;
 
 	if (ziki.y - ziki.height/2 <= DISP_AREA_MIN_Y)	ziki.y = DISP_AREA_MIN_Y + ziki.height / 2;
 	else if (ziki.y + ziki.height / 2 >= DISP_AREA_MAX_Y) ziki.y = DISP_AREA_MAX_Y - ziki.height / 2;

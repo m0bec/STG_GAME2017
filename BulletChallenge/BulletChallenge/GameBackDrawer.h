@@ -1,10 +1,11 @@
 #pragma once
 #include "DxLib.h"
 #include "Player.h"
+#include "GameSytem.h"
 
 class GameBackDrawer {
 private:
-
+	GameSystem& game_system = GameSystem::GetInstance();
 public:
 	GameBackDrawer(){}
 

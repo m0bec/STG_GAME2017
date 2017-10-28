@@ -5,5 +5,6 @@ void GameBackDrawer::GameBackDraw(int const& game_back_gr_) {
 }
 
 void GameBackDrawer::WriteWord(Ziki const& ziki_) {
-	DrawFormatString(640, 100, WORD_COLOR, "残機：%d", ziki_.hp);
+	DrawFormatString(640, 100, WORD_COLOR, "残機　：%d", ziki_.hp);
+	DrawFormatString(640, 150, WORD_COLOR, "スコア：%d", game_system.GetScore());
 }
