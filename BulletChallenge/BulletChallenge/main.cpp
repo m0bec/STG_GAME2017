@@ -27,6 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	GameBackDrawer game_back_drawer;
 	Player player;
 	EnemyController enemy_controller;
+	GameSystem& game_system = GameSystem::GetInstance();
 
 
 	while (true)
@@ -52,16 +53,29 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					break;
 
 				case GameState:
-					game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
-					enemy_controller.EnemyExe();
-					player.Exe();
-					for (Bullet &t_ : player.bullet) {
-						for (Enemy &ene_ : enemy_controller.enemy_array) {
-							enemy_controller.EnemyHit(ene_, t_);
+					switch (game_system.state) {
+					case StateInGame::Play:
+						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
+						enemy_controller.EnemyExe();
+						player.Exe();
+						for (Bullet &t_ : player.bullet) {
+							for (Enemy &ene_ : enemy_controller.enemy_array) {
+								enemy_controller.EnemyHit(ene_, t_);
+							}
 						}
+						enemy_controller.PlayerHit(player.ziki);
+						game_back_drawer.WriteWord(player.ziki);
+						break;
+
+					case StateInGame::Stop:
+						break;
+
+					case StateInGame::GameOver:
+						break;
+
+					case StateInGame::NextStage:
+						break;
 					}
-					enemy_controller.PlayerHit(player.ziki);
-					game_back_drawer.WriteWord(player.ziki);
 					break;
 
 				case SetEnemy:

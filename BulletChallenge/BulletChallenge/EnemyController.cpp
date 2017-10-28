@@ -30,6 +30,7 @@ void EnemyController::SetEnemy() {
 void EnemyController::EnemyExe() {
 	for (Enemy &enemy_ : enemy_array) {
 		EnemyMove(enemy_);
+		AddKillScore(enemy_);
 	}
 }
 
@@ -55,9 +56,11 @@ void EnemyController::PlayerHit(Ziki& ziki_) {
 	if (!ziki_.invalid) {
 		for (Enemy& enemy_ : enemy_array){
 			if (ziki_.x <= enemy_.x + enemy_.width && ziki_.x + ziki_.width >= enemy_.x
-			&& ziki_.y <= enemy_.y + enemy_.hight && ziki_.y + ziki_.height >= enemy_.y) {
-				enemy_.Sethp(0);
-					--ziki_.hp;
+			&& ziki_.y <= enemy_.y + enemy_.hight && ziki_.y + ziki_.height >= enemy_.y
+				&& enemy_.GetMoveVar() != EnemyMoveEnum::Death) {
+				enemy_.Sethp(-1);
+				enemy_.SetMoveVar(EnemyMoveEnum::Death);
+				--ziki_.hp;
 			}
 		}
 	}

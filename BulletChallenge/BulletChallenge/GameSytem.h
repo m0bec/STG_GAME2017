@@ -1,10 +1,17 @@
 #pragma once
 #include "DxLib.h"
 
+class StateInGame {
+public:
+	enum Is {
+		Play, Stop, GameOver, NextStage
+	};
+};
+
 class GameSystem {
 private:
 	GameSystem() {
-		score = 0;
+		SetVar();
 	}
 	~GameSystem() {}
 
@@ -16,6 +23,7 @@ public:
 		return inst;
 	}
 
+	int state;
 	void SetVar();
 	void ScoreAdd(int add_);
 	int GetScore() { return score; }
