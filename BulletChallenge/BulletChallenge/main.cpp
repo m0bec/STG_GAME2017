@@ -60,7 +60,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 							enemy_controller.EnemyHit(ene_, t_);
 						}
 					}
-					
+					enemy_controller.PlayerHit(player.ziki);
+					game_back_drawer.WriteWord(player.ziki);
 					break;
 
 				case SetEnemy:

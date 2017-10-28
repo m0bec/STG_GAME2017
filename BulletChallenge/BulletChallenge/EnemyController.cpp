@@ -48,3 +48,15 @@ void EnemyController::EnemyHit(Enemy& enemy_, Bullet& bullet_) {
 		}
 	}
 }
+
+void EnemyController::PlayerHit(Ziki& ziki_) {
+	if (!ziki_.invalid) {
+		for (Enemy& enemy_ : enemy_array){
+			if (ziki_.x <= enemy_.x + enemy_.width && ziki_.x + ziki_.width >= enemy_.x
+			&& ziki_.y <= enemy_.y + enemy_.hight && ziki_.y + ziki_.height >= enemy_.y) {
+				enemy_.Sethp(0);
+					--ziki_.hp;
+			}
+		}
+	}
+}

@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "GameBaseRule.h"
 #include "EnemyMoveEnum.h"
+#include "Player.h"
 #include <random>
 #include <vector>
 
@@ -23,4 +24,5 @@ public:
 	void EnemyExe();
 	void EnemyMove(Enemy& enemy_);
 	void EnemyHit(Enemy& enemy_, Bullet& bullet_);
+	void PlayerHit(Ziki& ziki_);
 };

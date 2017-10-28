@@ -51,8 +51,8 @@ void Player::BulletMove() {
 			t_.move_angle += BULLET_RADI;
 			if (t_.move_angle > 2 * PI)	t_.move_angle -= 2 * PI;
 			DrawGraph(t_.x, t_.y, t_.gr, TRUE);
-			if (t_.y + t_.height / 2 <= DISP_AREA_MIN_Y || t_.x - t_.width / 2 >= DISP_AREA_MAX_X ||
-				t_.y - t_.height / 2 >= DISP_AREA_MAX_Y || t_.x + t_.width / 2 <= DISP_AREA_MIN_X)	t_.move_var = NO_BULLET;
+			if (t_.y + t_.height / 2 <= DISP_AREA_MIN_Y || t_.x + t_.width >= DISP_AREA_MAX_X ||
+				t_.y - t_.height / 2 >= DISP_AREA_MAX_Y || t_.x - t_.width + 10 <= DISP_AREA_MIN_X)	t_.move_var = NO_BULLET;
 		}
 	}
 	if(bullet_count > 5)	bullet_count = 0;
