@@ -17,3 +17,10 @@ void Enemy::SetPos(int const& x_, int const& y_) {
 	x = x_;
 	y = y_;
 }
+
+void Enemy::Damage() {
+	--hp;
+	if (hp <= 0) {
+		move_var = EnemyMoveEnum::Death;
+	}
+}

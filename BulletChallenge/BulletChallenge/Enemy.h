@@ -1,5 +1,6 @@
 #pragma once
 #include "DxLib.h"
+#include "EnemyMoveEnum.h"
 #include "ObjectStructure.h"
 
 class Enemy {
@@ -19,5 +20,6 @@ public:
 	void SetGr(int const& gr_);
 	void SetPos(int const& x_, int const& y_);
 	void Sethp(int const& hp_) { hp = hp_; }	int Gethp() { return hp; }
-	void Damage() {}
+	int GetMoveVar() { return move_var; }
+	void Damage();
 };

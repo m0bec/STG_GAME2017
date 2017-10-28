@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemy.h"
 #include "GameBaseRule.h"
+#include "EnemyMoveEnum.h"
 #include <random>
 #include <vector>
 
