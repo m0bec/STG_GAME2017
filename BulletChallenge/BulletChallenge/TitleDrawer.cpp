@@ -65,7 +65,7 @@ void TitleDrawer::Select(bool &f_, int &state_) {
 	if (CheckHitKey(KEY_INPUT_RETURN) && !push_key_flag) {
 		switch (title_state) {
 		case Start:
-			state_ = GameState;
+			state_ = SetEnemy;
 			break;
 
 		case Manual:

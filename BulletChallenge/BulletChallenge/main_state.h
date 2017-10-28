@@ -1,5 +1,5 @@
 #pragma once
 
 enum MainState{
-	LoadGraphState, TitleDispState, GameState
+	LoadGraphState, TitleDispState, GameState, SetEnemy
 };

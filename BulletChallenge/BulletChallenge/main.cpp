@@ -20,13 +20,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	bool exit_flag = false;
 	int main_state = LoadGraphState;
-	GraphLoader graph_loader;
+	GraphLoader& graph_loader = GraphLoader::GetInstance();
 	TitleDrawer title_drawer;
 	graph_loader.Load();
 
 	GameBackDrawer game_back_drawer;
 	Player player;
 	EnemyController enemy_controller;
+
 
 	while (true)
 	{
@@ -41,6 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				case LoadGraphState:
 					main_state = TitleDispState;
 					player.SetPlayerData(graph_loader.ziki_gr, graph_loader.player_bullet_gr);
+					enemy_controller.SetEnemyGr(graph_loader.enemy_gr);
 					break;
 
 				case TitleDispState:
@@ -51,8 +53,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 				case GameState:
 					game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
-					player.Exe();	
+					enemy_controller.EnemyExe();
+					player.Exe();
+					for (Bullet &t_ : player.bullet) {
+						for (Enemy &ene_ : enemy_controller.enemy_array) {
+							enemy_controller.EnemyHit(ene_, t_);
+						}
+					}
 					break;
+
+				case SetEnemy:
+					DrawGraph(0, 0, graph_loader.load_gr, TRUE);
+					enemy_controller.SetEnemy();
+					main_state = GameState;
+					break;
+					
 			}
 		}
 		

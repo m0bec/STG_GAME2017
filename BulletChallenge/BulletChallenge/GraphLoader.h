@@ -4,12 +4,17 @@
 class GraphLoader {
 private:
 	bool error_flag = false;
-
+	GraphLoader() {}
 	
 public:
-	GraphLoader() {}
+	static GraphLoader& GetInstance()
+	{
+		static GraphLoader inst;
+		return inst;
+	}
 
 	void LoadCheck(int &gr, char* gr_name);
+	void ThreadLoadDisp();
 	void Load();
 	void TitleDraw();
 	void LoadError();

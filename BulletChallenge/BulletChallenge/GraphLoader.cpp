@@ -23,6 +23,10 @@ void GraphLoader::Load() {
 	LoadCheck(game_back_gr, "Graph/GameBack.png");
 }
 
+void GraphLoader::ThreadLoadDisp() {
+	DrawGraph(0, 0, load_gr, TRUE);
+}
+
 void GraphLoader::TitleDraw() {
 	DrawGraph(0, 0, title_back_gr, TRUE);
 	

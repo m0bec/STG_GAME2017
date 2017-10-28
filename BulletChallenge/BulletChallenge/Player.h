@@ -30,7 +30,6 @@ private:
 	const int BULLET_SPEED = 15;
 	const int NO_BULLET = -1;
 	Bullet sample_bullet;
-	Bullet bullet[100];
 	int bullet_count;
 
 public:
@@ -44,7 +43,7 @@ public:
 		for (Bullet &t_ : bullet)	t_.move_var = NO_BULLET;
 		bullet_count = 0;
 	}
-
+	Bullet bullet[100];
 	void Exe();
 	void Move();
 	void SetPlayerData(int const& gr_, int const& player_bullet_);
