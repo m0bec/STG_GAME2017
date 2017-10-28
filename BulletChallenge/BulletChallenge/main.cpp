@@ -60,6 +60,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 							enemy_controller.EnemyHit(ene_, t_);
 						}
 					}
+					
 					break;
 
 				case SetEnemy:

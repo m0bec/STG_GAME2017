@@ -18,24 +18,17 @@ void Player::SetPlayerData(int const& gr_, int const& player_bullet_gr_) {
 }
 
 void Player::Move() {
-	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		ziki.x += MOVE_SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_LEFT)) {
-		ziki.x -= MOVE_SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_UP)) {
-		ziki.y -= MOVE_SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_DOWN)) {
-		ziki.y += MOVE_SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_A)) {
-		ziki.rota += ROTA_SPEED;
-	}
-	if (CheckHitKey(KEY_INPUT_D)) {
-		ziki.rota -= ROTA_SPEED;
-	}
+	if (CheckHitKey(KEY_INPUT_RIGHT))	ziki.x += MOVE_SPEED;
+	if (CheckHitKey(KEY_INPUT_LEFT))	ziki.x -= MOVE_SPEED;
+	if (CheckHitKey(KEY_INPUT_UP)) 	ziki.y -= MOVE_SPEED;
+	if (CheckHitKey(KEY_INPUT_DOWN))	ziki.y += MOVE_SPEED;
+	if (CheckHitKey(KEY_INPUT_A))	ziki.rota += ROTA_SPEED;
+	if (CheckHitKey(KEY_INPUT_D))	ziki.rota -= ROTA_SPEED;
+
+	if (ziki.y - ziki.height/2 <= DISP_AREA_MIN_Y)	ziki.y = DISP_AREA_MIN_Y + ziki.height / 2;
+	else if (ziki.y + ziki.height / 2 >= DISP_AREA_MAX_Y) ziki.y = DISP_AREA_MAX_Y - ziki.height / 2;
+	if (ziki.x + ziki.width / 2 >= DISP_AREA_MAX_X)	ziki.x = DISP_AREA_MAX_X - ziki.width / 2;
+	else if (ziki.x - ziki.width/2 <= DISP_AREA_MIN_X)	ziki.x = DISP_AREA_MIN_X + ziki.width / 2;
 }
 
 void Player::BulletMove() {
@@ -46,8 +39,8 @@ void Player::BulletMove() {
 		if (t_.move_var == NO_BULLET) {
 			if (bullet_count > BULLET_COUNTER_MAX && count < 2) {
 				t_ = sample_bullet;
-				t_.x = ziki.x + ziki.width/4 - t_.width;
-				t_.y = ziki.y;
+				t_.x = ziki.x- t_.width / 2;
+				t_.y = ziki.y - t_.height / 2;
 				if (count == 1)	t_.move_angle += PI;
 				++count;
 			}
@@ -58,8 +51,8 @@ void Player::BulletMove() {
 			t_.move_angle += BULLET_RADI;
 			if (t_.move_angle > 2 * PI)	t_.move_angle -= 2 * PI;
 			DrawGraph(t_.x, t_.y, t_.gr, TRUE);
-			if (t_.y + t_.height < DISP_AREA_MIN_Y || t_.x - t_.width > DISP_AREA_MAX_X ||
-				t_.y - t_.height > DISP_AREA_MAX_Y || t_.x + t_.width < DISP_AREA_MIN_X)	t_.move_var = NO_BULLET;
+			if (t_.y + t_.height / 2 <= DISP_AREA_MIN_Y || t_.x - t_.width / 2 >= DISP_AREA_MAX_X ||
+				t_.y - t_.height / 2 >= DISP_AREA_MAX_Y || t_.x + t_.width / 2 <= DISP_AREA_MIN_X)	t_.move_var = NO_BULLET;
 		}
 	}
 	if(bullet_count > 5)	bullet_count = 0;

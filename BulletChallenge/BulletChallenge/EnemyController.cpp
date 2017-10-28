@@ -34,7 +34,7 @@ void EnemyController::EnemyExe() {
 
 void EnemyController::EnemyMove(Enemy& enemy_) {
 	if (enemy_.GetMoveVar() != EnemyMoveEnum::Death) {
-		DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE); printfDx("%d\n", enemy_array[0].y);
+		DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
 	}
 }
 
@@ -45,7 +45,6 @@ void EnemyController::EnemyHit(Enemy& enemy_, Bullet& bullet_) {
 			enemy_.Damage();
 			bullet_.x = -1000;
 			bullet_.y = -1000;
-			printfDx("Hit");
 		}
 	}
 }
