@@ -14,7 +14,24 @@ void EnemyController::EnemyShotMove(Ziki& ziki_) {
 			case EnemyShotEnum::Straight:
 				b_.y += b_.speed;
 				break;
+
+			case EnemyShotEnum::Target:
+				b_.y += static_cast<int>(b_.speed * sin(b_.rotate));
+				b_.x += static_cast<int>(b_.speed * cos(b_.rotate));
+				break;
+
+			case EnemyShotEnum::AvoidTwo:
+				if (b_.mark == 1) {
+					b_.y += static_cast<int>(b_.speed * sin(b_.rotate + PI / 9));
+					b_.x += static_cast<int>(b_.speed * cos(b_.rotate + PI / 9));
+				}
+				else if(b_.mark == 2){
+					b_.y += static_cast<int>(b_.speed * sin(b_.rotate - PI / 9));
+					b_.x += static_cast<int>(b_.speed * cos(b_.rotate - PI / 9));
+				}
+				break;
 			}
+
 			DrawGraph(b_.x, b_.y, b_.gr.gr, TRUE);
 			if (b_.y + b_.gr.h / 2 <= DISP_AREA_MIN_Y || b_.x + b_.gr.w >= DISP_AREA_MAX_X ||
 				b_.y - b_.gr.h / 2 >= DISP_AREA_MAX_Y || b_.x - b_.gr.w + 10 <= DISP_AREA_MIN_X)	b_.bullet_num = EnemyShotEnum::Non;

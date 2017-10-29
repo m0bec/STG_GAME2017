@@ -3,6 +3,7 @@
 void EnemyController::SetVar() {
 	enemy_create_num = START_CREATE_ENEMY_NUM;
 	enemy_death_num = 0;
+	enemy_create_num = START_CREATE_ENEMY_NUM;
 }
 
 void EnemyController::BulletGrSet(int const& blue_) {
@@ -13,15 +14,16 @@ void EnemyController::BulletGrSet(int const& blue_) {
 void EnemyController::SetEnemyBase() {
 	std::uniform_int_distribution<int> randx(DISP_AREA_MIN_X, DISP_AREA_ENEMY_MAX_X);
 	std::uniform_int_distribution<int> randy(DISP_AREA_MIN_Y, DIPS_AREA_ENEMY_MAX_Y);
+	std::uniform_int_distribution<int> rand_speed(2, 5);
 	base_enemy.Sethp(ENEMY_HP);
 	base_enemy.SetPos(randx(rd), randy(rd));
 	base_enemy.SetMoveVar(1);
 	base_enemy.bullet_num = 0;
 	base_enemy.rota = 0.0;
 	base_enemy.timer = 0;
-	base_enemy.bullet_speed = 4;//rand
+	base_enemy.bullet_speed = rand_speed(rd);//rand
 	base_enemy.start_time = 0;//rand
-	base_enemy.SetShotVar(EnemyShotEnum::Straight);//rand
+	base_enemy.SetShotVar(EnemyShotEnum::AvoidTwo);//rand
 	base_enemy.add_score = false;
 }
 
@@ -42,14 +44,14 @@ void EnemyController::SetEnemy() {
 	++enemy_create_num;
 }
 
-void EnemyController::EnemyExe() {
+void EnemyController::EnemyExe(Ziki& ziki_) {
 	enemy_death_num = 0;
 	str_bullet_note = 0;
 	for (Enemy &enemy_ : enemy_array) {
 		EnemyMove(enemy_);
 		AddKillScore(enemy_);
 		EnemyDeathNumCount(enemy_);
-		EnemyShot(enemy_);
+		EnemyShot(enemy_, ziki_);
 	}
 }
 

@@ -11,7 +11,7 @@
 
 class EnemyController {
 private:
-	const int START_CREATE_ENEMY_NUM = 10;
+	const int START_CREATE_ENEMY_NUM = 1;
 	const int ENEMY_HP = 100;
 	const int HIT_SCORE = 10;
 	const int KILL_ENEMY_SCORE = 300;
@@ -30,6 +30,8 @@ private:
 		int bullet_num;
 		GR gr;
 		int speed;
+		double rotate;
+		int mark;
 	};
 	EneBullet str_bullet[1000];
 	int str_bullet_note;
@@ -47,7 +49,7 @@ public:
 	void SetVar();
 	void SetEnemy();
 	void SetEnemyGr(int &enemy_gr_) { base_enemy.gr = enemy_gr_; GetGraphSize(enemy_gr_, &base_enemy.width, &base_enemy.hight); }
-	void EnemyExe();
+	void EnemyExe(Ziki& ziki_);
 	void SetEnemyBase();
 	void EnemyMove(Enemy& enemy_);
 	void EnemyHit(Enemy& enemy_, Bullet& bullet_);
@@ -56,7 +58,7 @@ public:
 	void OnlyDraw();
 	void EnemyDeathNumCheck(int& game_state_ );
 	void EnemyDeathNumCount(Enemy& enemy_);
-	void EnemyShot(Enemy& enemy_);
+	void EnemyShot(Enemy& enemy_, Ziki& ziki_);
 	void EnemyShotMove(Ziki& ziki_);
 	void EnemyShotClean();
 	void OnlyShotDraw();

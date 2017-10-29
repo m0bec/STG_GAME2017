@@ -60,7 +60,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					switch (game_system.state) {
 					case StateInGame::Play:
 						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
-						enemy_controller.EnemyExe();
+						enemy_controller.EnemyExe(player.ziki);
 						player.Exe();
 						for (Bullet &t_ : player.bullet) {
 							for (Enemy &ene_ : enemy_controller.enemy_array) {

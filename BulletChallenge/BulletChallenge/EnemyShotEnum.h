@@ -2,6 +2,6 @@
 class EnemyShotEnum {
 public:
 	enum state {
-		Non, Straight
+		Non, Straight, Target, AvoidTwo
 	};
 };
