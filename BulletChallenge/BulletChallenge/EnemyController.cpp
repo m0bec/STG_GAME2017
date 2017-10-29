@@ -1,5 +1,11 @@
 #include "EnemyController.h"
 #include <thread>
+
+void EnemyController::SetVar() {
+	enemy_create_num = START_CREATE_ENEMY_NUM;
+	enemy_death_num = 0;
+}
+
 void EnemyController::SetEnemy() {
 	int num_ = 0;
 	for (Enemy &t_ : enemy_array) {
@@ -28,10 +34,20 @@ void EnemyController::SetEnemy() {
 }
 
 void EnemyController::EnemyExe() {
+	enemy_death_num = 0;
 	for (Enemy &enemy_ : enemy_array) {
 		EnemyMove(enemy_);
 		AddKillScore(enemy_);
+		EnemyDeathNumCount(enemy_);
 	}
+}
+
+void EnemyController::EnemyDeathNumCheck(int& game_state_) {
+	if (enemy_death_num == enemy_create_num - 1)	game_state_ = StateInGame::NextStage;
+}
+
+void EnemyController::EnemyDeathNumCount(Enemy& enemy_) {
+	if (enemy_.GetMoveVar() == EnemyMoveEnum::Death)	++enemy_death_num;
 }
 
 void EnemyController::EnemyMove(Enemy& enemy_) {
@@ -75,6 +91,7 @@ void EnemyController::AddKillScore(Enemy& enemy_) {
 
 void EnemyController::OnlyDraw() {
 	for (Enemy enemy_ : enemy_array) {
-		DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
+		if(enemy_.GetMoveVar() != EnemyMoveEnum::Death)
+			DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
 	}
 }

@@ -47,3 +47,31 @@ void GameBackDrawer::StopDraw(int& stop_state_, int& state_, int& continue_gr_, 
 		break;
 	}
 }
+
+void GameBackDrawer::GameOverDraw(int &state_, int& game_state_, int const& game_over_gr_) {
+	DrawGraph(150, 200, game_over_gr_, TRUE);
+	if (game_over_timer > 30) {
+		if (CheckHitKey(KEY_INPUT_RETURN)) {
+			state_ = TitleDispState;
+			game_over_timer = 0;
+			game_state_ = StateInGame::Play;
+		}
+	}
+	else {
+		++game_over_timer;
+	}
+}
+
+void GameBackDrawer::GameNextStage(int& state_, int& game_state_, int const& game_clear_gr_) {
+	DrawGraph(150, 200, game_clear_gr_, TRUE);
+	if (game_clear_timer > 30) {
+		if (CheckHitKey(KEY_INPUT_RETURN)) {
+			state_ = SetEnemy;
+			game_clear_timer = 0;
+			game_state_ = StateInGame::Play;
+		}
+	}
+	else {
+		++game_clear_timer;
+	}
+}

@@ -13,3 +13,7 @@ void GameSystem::ScoreAdd(int add_) {
 void GameSystem::CheckGoToStop() {
 	if (CheckHitKey(KEY_INPUT_S))	state = StateInGame::Stop;
 }
+
+void GameSystem::ZikiHpCheck(int const& hp_) {
+	if (hp_ < 0)	state = StateInGame::GameOver;
+}

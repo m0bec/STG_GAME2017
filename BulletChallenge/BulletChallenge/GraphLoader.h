@@ -35,4 +35,6 @@ public:
 	int stop_back_gr;
 	int stop_continue_gr;
 	int stop_exit_gr;
+	int game_over_gr;
+	int clear_gr;
 };

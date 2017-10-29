@@ -1,6 +1,20 @@
 #include "Player.h"
 #include <cmath>
 
+void Player::SetVar() {
+	ziki.avoid_num = 2;
+	ziki.hp = 2;
+	ziki.rota = 0.0;
+	ziki.invalid = false;
+	sample_bullet.move_var = 0;
+	sample_bullet.move_speed = BULLET_SPEED;
+	sample_bullet.move_angle = 0.0;
+	for (Bullet &t_ : bullet)	t_.move_var = NO_BULLET;
+	bullet_count = 0;
+	ziki.x = 280 + ziki.width / 2;
+	ziki.y = 600 - ziki.height / 2;
+}
+
 void Player::Exe() {
 	Move();
 	BulletMove();
@@ -10,8 +24,6 @@ void Player::Exe() {
 void Player::SetPlayerData(int const& gr_, int const& player_bullet_gr_) {
 	ziki.gr = gr_;
 	GetGraphSize(gr_, &ziki.width, &ziki.height);
-	ziki.x = 400 - ziki.width / 2;
-	ziki.y = 400 + ziki.height / 2;
 
 	sample_bullet.gr = player_bullet_gr_;
 	GetGraphSize(player_bullet_gr_, &sample_bullet.width, &sample_bullet.height);

@@ -35,16 +35,9 @@ private:
 
 public:
 	Player(){
-		ziki.avoid_num = 2;
-		ziki.hp = 2;
-		ziki.rota = 0.0;
-		ziki.invalid = false;
-		sample_bullet.move_var = 0;
-		sample_bullet.move_speed = BULLET_SPEED;
-		sample_bullet.move_angle = 0.0;
-		for (Bullet &t_ : bullet)	t_.move_var = NO_BULLET;
-		bullet_count = 0;
+		SetVar();
 	}
+	void SetVar();
 	Ziki ziki;
 	Bullet bullet[100];
 	void Exe();

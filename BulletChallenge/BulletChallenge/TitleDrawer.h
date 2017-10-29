@@ -21,4 +21,5 @@ public:
 	void DrawTitle(int const& title_back_gr_, int const& start_gr_, int const& exit_gr_, int const& manual_gr_, int const& manual_disp_);
 	void TitleSystem();
 	void Select(bool &f_, int &state_);
+	void SetPushKeyFlag() { push_key_flag = true; }
 };

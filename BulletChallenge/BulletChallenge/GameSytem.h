@@ -36,4 +36,5 @@ public:
 	void ScoreAdd(int add_);
 	int GetScore() { return score; }
 	void CheckGoToStop();
+	void ZikiHpCheck(int const& hp_);
 };

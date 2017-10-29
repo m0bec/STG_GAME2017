@@ -50,6 +50,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					title_drawer.DrawTitle(graph_loader.title_back_gr, graph_loader.start_gr, graph_loader.exit_gr, graph_loader.manual_gr, graph_loader.manual_disp);
 					title_drawer.TitleSystem();
 					title_drawer.Select(exit_flag, main_state);
+					enemy_controller.SetVar();
+					game_system.SetVar();
+					player.SetVar();
 					break;
 
 				case GameState:
@@ -66,6 +69,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						enemy_controller.PlayerHit(player.ziki);
 						game_back_drawer.WriteWord(player.ziki);
 						game_system.CheckGoToStop();
+						enemy_controller.EnemyDeathNumCheck(game_system.state);
+						game_system.ZikiHpCheck(player.ziki.hp);
 						break;
 
 					case StateInGame::Stop:
@@ -77,9 +82,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						break;
 
 					case StateInGame::GameOver:
+						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
+						enemy_controller.OnlyDraw();
+						player.OnltDraw();
+						game_back_drawer.WriteWord(player.ziki);
+						game_back_drawer.GameOverDraw(main_state, game_system.state, graph_loader.game_over_gr);
+						title_drawer.SetPushKeyFlag();
 						break;
 
 					case StateInGame::NextStage:
+						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
+						enemy_controller.OnlyDraw();
+						player.OnltDraw();
+						game_back_drawer.WriteWord(player.ziki);
+						game_back_drawer.GameNextStage(main_state, game_system.state, graph_loader.clear_gr);
 						break;
 					}
 					break;
