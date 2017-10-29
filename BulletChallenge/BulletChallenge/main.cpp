@@ -65,9 +65,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						}
 						enemy_controller.PlayerHit(player.ziki);
 						game_back_drawer.WriteWord(player.ziki);
+						game_system.CheckGoToStop();
 						break;
 
 					case StateInGame::Stop:
+						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
+						enemy_controller.OnlyDraw();
+						player.OnltDraw();
+						game_back_drawer.WriteWord(player.ziki);
+						game_back_drawer.StopDraw(game_system.stop_state, game_system.state, graph_loader.stop_continue_gr, graph_loader.stop_exit_gr, graph_loader.stop_back_gr);
 						break;
 
 					case StateInGame::GameOver:

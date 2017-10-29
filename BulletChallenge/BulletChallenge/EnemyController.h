@@ -30,4 +30,5 @@ public:
 	void EnemyHit(Enemy& enemy_, Bullet& bullet_);
 	void PlayerHit(Ziki& ziki_);
 	void AddKillScore(Enemy& enemy_);
+	void OnlyDraw();
 };

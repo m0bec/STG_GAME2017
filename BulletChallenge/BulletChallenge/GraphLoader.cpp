@@ -21,6 +21,9 @@ void GraphLoader::Load() {
 	LoadCheck(manual_disp, "Graph/ManualDisp.png");
 
 	LoadCheck(game_back_gr, "Graph/GameBack.png");
+	LoadCheck(stop_back_gr, "Graph/StopBack.png");
+	LoadCheck(stop_continue_gr, "Graph/continue_.png");
+	LoadCheck(stop_exit_gr, "Graph/Exit_.png");
 }
 
 void GraphLoader::ThreadLoadDisp() {

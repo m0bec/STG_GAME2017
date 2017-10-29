@@ -32,4 +32,7 @@ public:
 	int manual_disp;
 	//Game
 	int game_back_gr;
+	int stop_back_gr;
+	int stop_continue_gr;
+	int stop_exit_gr;
 };

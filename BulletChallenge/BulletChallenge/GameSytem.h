@@ -8,6 +8,13 @@ public:
 	};
 };
 
+class StateInStop {
+public:
+	enum Is {
+		Continue, Exit
+	};
+};
+
 class GameSystem {
 private:
 	GameSystem() {
@@ -24,7 +31,9 @@ public:
 	}
 
 	int state;
+	int stop_state;
 	void SetVar();
 	void ScoreAdd(int add_);
 	int GetScore() { return score; }
+	void CheckGoToStop();
 };

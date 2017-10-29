@@ -3,8 +3,8 @@
 
 void Player::Exe() {
 	Move();
-	DrawRotaGraph(ziki.x, ziki.y, 1.0, ziki.rota, ziki.gr, TRUE, FALSE);
 	BulletMove();
+	DrawRotaGraph(ziki.x, ziki.y, 1.0, ziki.rota, ziki.gr, TRUE, FALSE);
 }
 
 void Player::SetPlayerData(int const& gr_, int const& player_bullet_gr_) {
@@ -56,4 +56,11 @@ void Player::BulletMove() {
 		}
 	}
 	if(bullet_count > 5)	bullet_count = 0;
+}
+
+void Player::OnltDraw() {
+	for (Bullet &bul_ : bullet) {
+		DrawGraph(bul_.x, bul_ .y, bul_.gr, TRUE);
+	}
+	DrawRotaGraph(ziki.x, ziki.y, 1.0, ziki.rota, ziki.gr, TRUE, FALSE);
 }

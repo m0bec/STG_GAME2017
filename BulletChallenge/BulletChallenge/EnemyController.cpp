@@ -72,3 +72,9 @@ void EnemyController::AddKillScore(Enemy& enemy_) {
 		enemy_.add_score = true;
 	}
 }
+
+void EnemyController::OnlyDraw() {
+	for (Enemy enemy_ : enemy_array) {
+		DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
+	}
+}

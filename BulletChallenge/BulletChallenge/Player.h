@@ -51,4 +51,5 @@ public:
 	void Move();
 	void SetPlayerData(int const& gr_, int const& player_bullet_);
 	void BulletMove();
+	void OnltDraw();
 };
