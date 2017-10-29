@@ -37,4 +37,5 @@ public:
 	int stop_exit_gr;
 	int game_over_gr;
 	int clear_gr;
+	int blue_bullet_gr;
 };

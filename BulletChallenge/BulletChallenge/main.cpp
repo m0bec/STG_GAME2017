@@ -44,6 +44,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					main_state = TitleDispState;
 					player.SetPlayerData(graph_loader.ziki_gr, graph_loader.player_bullet_gr);
 					enemy_controller.SetEnemyGr(graph_loader.enemy_gr);
+					enemy_controller.BulletGrSet(graph_loader.blue_bullet_gr);
 					break;
 
 				case TitleDispState:
@@ -66,6 +67,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 								enemy_controller.EnemyHit(ene_, t_);
 							}
 						}
+						enemy_controller.EnemyShotMove(player.ziki);
 						enemy_controller.PlayerHit(player.ziki);
 						game_back_drawer.WriteWord(player.ziki);
 						game_system.CheckGoToStop();
@@ -77,6 +79,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
 						enemy_controller.OnlyDraw();
 						player.OnltDraw();
+						enemy_controller.OnlyShotDraw();
 						game_back_drawer.WriteWord(player.ziki);
 						game_back_drawer.StopDraw(game_system.stop_state, game_system.state, graph_loader.stop_continue_gr, graph_loader.stop_exit_gr, graph_loader.stop_back_gr);
 						break;
@@ -85,6 +88,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						game_back_drawer.GameBackDraw(graph_loader.game_back_gr);
 						enemy_controller.OnlyDraw();
 						player.OnltDraw();
+						enemy_controller.OnlyShotDraw();
 						game_back_drawer.WriteWord(player.ziki);
 						game_back_drawer.GameOverDraw(main_state, game_system.state, graph_loader.game_over_gr);
 						title_drawer.SetPushKeyFlag();
@@ -103,6 +107,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				case SetEnemy:
 					DrawGraph(0, 0, graph_loader.load_gr, TRUE);
 					enemy_controller.SetEnemy();
+					enemy_controller.EnemyShotClean();
 					main_state = GameState;
 					break;
 					

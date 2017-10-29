@@ -16,8 +16,13 @@ public:
 	int hight, width;
 	double rota;
 	bool add_score;
+	int timer;
+	int start_time;
+	int bullet_num;
+	int bullet_speed;
 
 	void SetShotVar(int const& shot_var_);
+	int  GetShotVar() { return shot_var; }
 	void SetMoveVar(int const& shot_var_);
 	void SetGr(int const& gr_);
 	void SetPos(int const& x_, int const& y_);

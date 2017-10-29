@@ -2,6 +2,6 @@
 class EnemyMoveEnum {
 public:
 	enum state {
-		Death
+		Death, StraightSide
 	};
 };

@@ -26,6 +26,7 @@ void GraphLoader::Load() {
 	LoadCheck(stop_exit_gr, "Graph/Exit_.png");
 	LoadCheck(game_over_gr, "Graph/GameOver.png");
 	LoadCheck(clear_gr, "Graph/Clear.png");
+	LoadCheck(blue_bullet_gr, "Graph/ETama8.png");
 }
 
 void GraphLoader::ThreadLoadDisp() {
