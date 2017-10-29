@@ -4,6 +4,7 @@
 #include "EnemyMoveEnum.h"
 #include "Player.h"
 #include "GameSytem.h"
+#include <cmath>
 #include <random>
 #include <vector>
 
@@ -13,6 +14,7 @@ private:
 	const int ENEMY_HP = 100;
 	const int HIT_SCORE = 10;
 	const int KILL_ENEMY_SCORE = 300;
+	const double ENEMY_ROTA_SPEED = PI / 10;
 	std::random_device rd;	
 	Enemy base_enemy;
 	int enemy_create_num;

@@ -14,6 +14,7 @@ public:
 	int gr;
 	int x, y;
 	int hight, width;
+	double rota;
 	bool add_score;
 
 	void SetShotVar(int const& shot_var_);

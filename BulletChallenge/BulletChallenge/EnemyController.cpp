@@ -1,5 +1,4 @@
 #include "EnemyController.h"
-#include <thread>
 
 void EnemyController::SetVar() {
 	enemy_create_num = START_CREATE_ENEMY_NUM;
@@ -15,6 +14,7 @@ void EnemyController::SetEnemy() {
 			base_enemy.Sethp(ENEMY_HP);
 			base_enemy.SetPos(randx(rd), randy(rd));
 			base_enemy.SetMoveVar(1);
+			base_enemy.rota = 0.0;
 			base_enemy.add_score = false;
 			t_ = base_enemy;
 			++num_;
@@ -52,14 +52,17 @@ void EnemyController::EnemyDeathNumCount(Enemy& enemy_) {
 
 void EnemyController::EnemyMove(Enemy& enemy_) {
 	if (enemy_.GetMoveVar() != EnemyMoveEnum::Death) {
-		DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
+		DrawRotaGraph(enemy_.x, enemy_.y, 1.0, enemy_.rota, enemy_.gr, TRUE, FALSE);
+		enemy_.rota += PI / 7;
+		if (enemy_.rota > 2 * PI)	enemy_.rota - 2 * PI;
 	}
 }
-
+/*abs(bullet_.x + bullet_.width / 2 - enemy_.x + enemy_.width / 2) <= bullet_.width/2 + enemy_.width/2
+			&& abs(bullet_.y + bullet_.height/2 - enemy_.y + enemy_.hight/2) <= bullet_.height/2 + enemy_.hight/2*/
 void EnemyController::EnemyHit(Enemy& enemy_, Bullet& bullet_) {
 	if (enemy_.Gethp() > 0) {
-		if (bullet_.x <= enemy_.x + enemy_.width && bullet_.x + bullet_.width >= enemy_.x
-			&& bullet_.y <= enemy_.y + enemy_.hight && bullet_.y + bullet_.height >= enemy_.y) {
+		if (abs(bullet_.x + bullet_.width / 2 - (enemy_.x + enemy_.width / 2)) <= bullet_.width / 2 + enemy_.width / 2 + 10
+			&& abs(bullet_.y + bullet_.height / 2 - (enemy_.y + enemy_.hight / 2)) <= bullet_.height / 2 + enemy_.hight / 2 + 10) {
 			enemy_.Damage();
 			bullet_.x = -1000;
 			bullet_.y = -1000;
@@ -92,6 +95,6 @@ void EnemyController::AddKillScore(Enemy& enemy_) {
 void EnemyController::OnlyDraw() {
 	for (Enemy enemy_ : enemy_array) {
 		if(enemy_.GetMoveVar() != EnemyMoveEnum::Death)
-			DrawGraph(enemy_.x, enemy_.y, enemy_.gr, TRUE);
+			DrawRotaGraph(enemy_.x, enemy_.y, 1.0, enemy_.rota, enemy_.gr, TRUE, FALSE);
 	}
 }
