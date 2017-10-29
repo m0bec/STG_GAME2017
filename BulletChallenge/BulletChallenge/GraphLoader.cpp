@@ -11,6 +11,7 @@ void GraphLoader::Load() {
 	LoadCheck(load_gr, "Graph/load.png");
 	SetUseASyncLoadFlag(TRUE);
 	LoadCheck(ziki_gr, "Graph/ziki.png");
+	LoadCheck(core_gr, "Graph/core.png");
 	LoadCheck(player_bullet_gr, "Graph/PlayerBullet.png");
 	LoadCheck(enemy_gr, "Graph/Enemy.png");
 

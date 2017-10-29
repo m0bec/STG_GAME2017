@@ -42,7 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			switch(main_state) {
 				case LoadGraphState:
 					main_state = TitleDispState;
-					player.SetPlayerData(graph_loader.ziki_gr, graph_loader.player_bullet_gr);
+					player.SetPlayerData(graph_loader.ziki_gr, graph_loader.player_bullet_gr, graph_loader.core_gr);
 					enemy_controller.SetEnemyGr(graph_loader.enemy_gr);
 					enemy_controller.BulletGrSet(graph_loader.blue_bullet_gr);
 					break;

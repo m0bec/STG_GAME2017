@@ -22,6 +22,7 @@ public:
 	//Ziki
 	int ziki_gr;
 	int player_bullet_gr;
+	int core_gr;
 	//Enemy
 	int enemy_gr;
 	//Title

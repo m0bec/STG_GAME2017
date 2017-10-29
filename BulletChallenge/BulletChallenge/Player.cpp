@@ -13,17 +13,27 @@ void Player::SetVar() {
 	bullet_count = 0;
 	ziki.x = 280 + ziki.width / 2;
 	ziki.y = 600 - ziki.height / 2;
+	core_x = ziki.x - core_w / 2;
+	core_y = ziki.y - core_h / 2;
+	ziki.r = core_w / 2;
+	ziki.invalid_timer = 0;
 }
 
 void Player::Exe() {
 	Move();
 	BulletMove();
 	DrawRotaGraph(ziki.x, ziki.y, 1.0, ziki.rota, ziki.gr, TRUE, FALSE);
+	core_x = ziki.x - core_w / 2;
+	core_y = ziki.y - core_h / 2;
+	DrawGraph(core_x, core_y, core_gr, TRUE);
+	InvalidMode();
 }
 
-void Player::SetPlayerData(int const& gr_, int const& player_bullet_gr_) {
+void Player::SetPlayerData(int const& gr_, int const& player_bullet_gr_, int const& core_gr_) {
 	ziki.gr = gr_;
+	core_gr = core_gr_;
 	GetGraphSize(gr_, &ziki.width, &ziki.height);
+	GetGraphSize(core_gr, &core_w, &core_h);
 
 	sample_bullet.gr = player_bullet_gr_;
 	GetGraphSize(player_bullet_gr_, &sample_bullet.width, &sample_bullet.height);
@@ -75,4 +85,16 @@ void Player::OnltDraw() {
 		DrawGraph(bul_.x, bul_ .y, bul_.gr, TRUE);
 	}
 	DrawRotaGraph(ziki.x, ziki.y, 1.0, ziki.rota, ziki.gr, TRUE, FALSE);
+	DrawGraph(core_x, core_y, core_gr, TRUE);
+}
+
+void Player::InvalidMode() {
+	if (ziki.invalid) {
+		++ziki.invalid_timer;
+		if (ziki.invalid_timer > 100) {
+			ziki.invalid_timer = 0;
+			ziki.invalid = false;
+		}
+		DrawFormatString(640, 300, WORD_COLOR, "INVALID MODE");
+	}
 }

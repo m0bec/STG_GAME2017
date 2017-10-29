@@ -18,6 +18,15 @@ void EnemyController::EnemyShotMove(Ziki& ziki_) {
 			DrawGraph(b_.x, b_.y, b_.gr.gr, TRUE);
 			if (b_.y + b_.gr.h / 2 <= DISP_AREA_MIN_Y || b_.x + b_.gr.w >= DISP_AREA_MAX_X ||
 				b_.y - b_.gr.h / 2 >= DISP_AREA_MAX_Y || b_.x - b_.gr.w + 10 <= DISP_AREA_MIN_X)	b_.bullet_num = EnemyShotEnum::Non;
+			if ((b_.x + b_.gr.w / 2 - ziki_.x) * (b_.x + b_.gr.w / 2 - ziki_.x)
+				+ (b_.y + b_.gr.h / 2 - ziki_.y) * (b_.y + b_.gr.h / 2 - ziki_.y)
+				<= (ziki_.r + b_.gr.w / 2 - 5) * (ziki_.r + b_.gr.w / 2 - 5)) {
+				if (!ziki_.invalid) {
+					b_.bullet_num = EnemyShotEnum::Non;
+					--ziki_.hp;
+					ziki_.invalid = true;
+				}
+			}
 		}
 	}
 	if (str_bullet_note > count_) {

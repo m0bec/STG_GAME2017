@@ -20,6 +20,8 @@ struct Ziki {
 	int avoid_num;
 	int hp;
 	bool invalid;
+	int invalid_timer;
+	int r;
 };
 
 class Player {
@@ -32,6 +34,8 @@ private:
 	const int NO_BULLET = -1;
 	Bullet sample_bullet;
 	int bullet_count;
+	int core_x, core_y, core_w, core_h;
+	int core_gr;
 
 public:
 	Player(){
@@ -42,7 +46,8 @@ public:
 	Bullet bullet[100];
 	void Exe();
 	void Move();
-	void SetPlayerData(int const& gr_, int const& player_bullet_);
+	void SetPlayerData(int const& gr_, int const& player_bullet_, int const& core_gr_);
 	void BulletMove();
 	void OnltDraw();
+	void InvalidMode();
 };

@@ -82,6 +82,7 @@ void EnemyController::PlayerHit(Ziki& ziki_) {
 				enemy_.Sethp(-1);
 				enemy_.SetMoveVar(EnemyMoveEnum::Death);
 				--ziki_.hp;
+				ziki_.invalid = true;
 			}
 		}
 	}
