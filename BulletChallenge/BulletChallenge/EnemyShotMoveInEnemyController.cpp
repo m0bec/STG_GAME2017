@@ -30,6 +30,16 @@ void EnemyController::EnemyShotMove(Ziki& ziki_) {
 					b_.x += static_cast<int>(b_.speed * cos(b_.rotate - PI / 9));
 				}
 				break;
+
+			case EnemyShotEnum::RightTurn:
+				b_.y += static_cast<int>(b_.speed * sin(b_.rotate));
+				b_.x += static_cast<int>(b_.speed * cos(b_.rotate));
+				break;
+
+			case EnemyShotEnum::LeftTurn:
+				b_.y += static_cast<int>(b_.speed * sin(b_.rotate));
+				b_.x += static_cast<int>(b_.speed * cos(b_.rotate));
+				break;
 			}
 
 			DrawGraph(b_.x, b_.y, b_.gr.gr, TRUE);

@@ -20,6 +20,7 @@ public:
 	int start_time;
 	int bullet_num;
 	int bullet_speed;
+	double bullet_rota;
 
 	void SetShotVar(int const& shot_var_);
 	int  GetShotVar() { return shot_var; }

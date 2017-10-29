@@ -69,6 +69,48 @@ void EnemyController::EnemyShot(Enemy& enemy_, Ziki& ziki_) {
 				++str_bullet_note;
 			}
 			break;
+
+		case EnemyShotEnum::RightTurn:
+			enemy_.bullet_rota += PI / 97;
+			if (enemy_.timer > 10) {
+				base_bullet.bullet_num = enemy_.GetShotVar();
+				base_bullet.gr = blue_bullet_gr;
+				base_bullet.x = enemy_.x - base_bullet.gr.w / 2;
+				base_bullet.y = enemy_.y - base_bullet.gr.h / 2;
+				base_bullet.speed = enemy_.bullet_speed;
+				base_bullet.rotate = enemy_.bullet_rota;
+				if (enemy_.bullet_rota > 2 * PI)	enemy_.bullet_rota -= 2 * PI;
+				str_bullet[str_bullet_note] = base_bullet;
+				++str_bullet_note;
+				for (int j = 0; j < 3; j++) {
+					base_bullet.rotate += PI / 2;
+					str_bullet[str_bullet_note] = base_bullet;
+					++str_bullet_note;
+				}
+				enemy_.timer = 0;
+			}
+			break;
+
+		case EnemyShotEnum::LeftTurn:
+			enemy_.bullet_rota -= PI / 97;
+			if (enemy_.timer > 10) {
+				base_bullet.bullet_num = enemy_.GetShotVar();
+				base_bullet.gr = blue_bullet_gr;
+				base_bullet.x = enemy_.x - base_bullet.gr.w / 2;
+				base_bullet.y = enemy_.y - base_bullet.gr.h / 2;
+				base_bullet.speed = enemy_.bullet_speed;
+				base_bullet.rotate = enemy_.bullet_rota;
+				if (enemy_.bullet_rota < -2 * PI)	enemy_.bullet_rota += 2 * PI;
+				str_bullet[str_bullet_note] = base_bullet;
+				++str_bullet_note;
+				for (int j = 0; j < 3; j++) {
+					base_bullet.rotate += PI / 2;
+					str_bullet[str_bullet_note] = base_bullet;
+					++str_bullet_note;
+				}
+				enemy_.timer = 0;
+			}
+			break;
 		}
 	}
 }

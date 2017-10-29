@@ -12,8 +12,8 @@ void EnemyController::BulletGrSet(int const& blue_) {
 }
 
 void EnemyController::SetEnemyBase() {
-	std::uniform_int_distribution<int> randx(DISP_AREA_MIN_X, DISP_AREA_ENEMY_MAX_X);
-	std::uniform_int_distribution<int> randy(DISP_AREA_MIN_Y, DIPS_AREA_ENEMY_MAX_Y);
+	std::uniform_int_distribution<int> randx(DISP_AREA_MIN_X + 50, DISP_AREA_ENEMY_MAX_X - 50);
+	std::uniform_int_distribution<int> randy(DISP_AREA_MIN_Y + 50, DIPS_AREA_ENEMY_MAX_Y);
 	std::uniform_int_distribution<int> rand_speed(2, 5);
 	base_enemy.Sethp(ENEMY_HP);
 	base_enemy.SetPos(randx(rd), randy(rd));
@@ -21,9 +21,10 @@ void EnemyController::SetEnemyBase() {
 	base_enemy.bullet_num = 0;
 	base_enemy.rota = 0.0;
 	base_enemy.timer = 0;
+	base_enemy.bullet_rota = 0;
 	base_enemy.bullet_speed = rand_speed(rd);//rand
 	base_enemy.start_time = 0;//rand
-	base_enemy.SetShotVar(EnemyShotEnum::AvoidTwo);//rand
+	base_enemy.SetShotVar(EnemyShotEnum::LeftTurn);//rand
 	base_enemy.add_score = false;
 }
 
